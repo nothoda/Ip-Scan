@@ -1,0 +1,28 @@
+from ftplib import FTP
+import os
+
+def upload_file(ip, port, username, password, local_file, remote_file):
+    if not os.path.isfile(local_file):
+        print(f"Error: The local file '{local_file}' does not exist.")
+        return
+
+    try:
+        with 
+        with FTP() as ftp:
+            ftp.connect(ip, port)
+            ftp.login(username, password)
+            with open(local_file, 'rb') as file:
+                ftp.storbinary('STOR ' + remote_file, file)
+            print("File uploaded successfully")
+    except Exception as e:
+        print("Error: ", str(e))
+
+
+ip = 'Target-Ip'
+port = 21
+username = 'username'
+password = 'password'
+local_file = 'local_file.txt'
+remote_file = '/remote_file.txt'
+
+upload_file(ip, port, username, password, local_file, remote_file)
